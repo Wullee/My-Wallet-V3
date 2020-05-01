@@ -28,12 +28,13 @@
     "url": "https://github.com/blockchain/my-wallet-v3.git"
   },
   "scripts": {
-    "prepublish": "node_modules/.bin/babel src --presets babel-preset-es2015 --out-dir lib",
+    "prepublish": "yarn run snyk-protect && node_modules/.bin/babel src --presets babel-preset-es2015 --out-dir lib",
     "dist": "NODE_ENV=\"prod\" ./node_modules/.bin/webpack",
     "build": "./node_modules/.bin/webpack --progress",
     "build:watch": "./node_modules/.bin/webpack -w",
     "clean": "rm -rf dist/ coverage/ coverage-lcov/",
-    "test": "./node_modules/karma/bin/karma start karma.conf.js"
+    "test": "./node_modules/karma/bin/karma start karma.conf.js",
+    "snyk-protect": "snyk protect"
   },
   "browser": {
     "ws": "./src/ws-browser.js"
@@ -62,7 +63,8 @@
     "ramda": "^0.22.1",
     "randombytes": "^2.0.1",
     "unorm": "^1.4.1",
-    "ws": "2.0.*"
+    "ws": "2.0.*",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "babel-cli": "~6.24.0",
@@ -118,5 +120,6 @@
   },
   "engines": {
     "node": "7.5"
-  }
+  },
+  "snyk": true
 }
